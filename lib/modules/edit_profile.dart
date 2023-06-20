@@ -130,11 +130,14 @@ class _EditProfileState extends State<EditProfile> {
                             width: 24,
                           ),
                           8.width,
-                          Text('Personal Information',    style: TextStyle(
-                              fontSize: 15.sp,
-                              color: const Color(0xffde6041),
-                              fontFamily: cinta,
-                              fontWeight: FontWeight.w700),),
+                          Text(
+                            'Personal Information',
+                            style: TextStyle(
+                                fontSize: 15.sp,
+                                color: const Color(0xffde6041),
+                                fontFamily: cinta,
+                                fontWeight: FontWeight.w700),
+                          ),
                           const Spacer(),
                           Image.asset(
                             downArrow,
@@ -333,12 +336,20 @@ class _EditProfileState extends State<EditProfile> {
                       child: Row(
                         children: [
                           8.width,
-                          const Icon(Icons.account_balance,  color: Color(0xffde6041),),8.width,
-                          Text('Bank Account',    style: TextStyle(
-                              fontSize: 15.sp,
-                              color: const Color(0xffde6041),
-                              fontFamily: cinta,
-                              fontWeight: FontWeight.w700),),const Spacer(),
+                          const Icon(
+                            Icons.account_balance,
+                            color: Color(0xffde6041),
+                          ),
+                          8.width,
+                          Text(
+                            'Bank Account',
+                            style: TextStyle(
+                                fontSize: 15.sp,
+                                color: const Color(0xffde6041),
+                                fontFamily: cinta,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          const Spacer(),
                           const Icon(
                             Icons.arrow_forward_ios,
                             color: Color(0xffde6041),
@@ -347,7 +358,8 @@ class _EditProfileState extends State<EditProfile> {
                           8.width,
                         ],
                       ),
-                    ),32.height,
+                    ),
+                    32.height,
                     InkWell(
                       onTap: () async {
                         const SuccessPage(

@@ -40,7 +40,7 @@ class _PasswordSettingState extends State<PasswordSetting> {
                       fontSize: 35.sp,
                       color: black,
                       fontWeight: FontWeight.bold)),
-                 Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: CustomTextField(
                   label: 'Password',
@@ -53,7 +53,7 @@ class _PasswordSettingState extends State<PasswordSetting> {
                           color: Color.fromRGBO(0, 0, 0, 1))),
                 ),
               ),
-                     Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: CustomTextField(
                   label: 'Confirm password',
@@ -66,7 +66,7 @@ class _PasswordSettingState extends State<PasswordSetting> {
                           color: Color.fromRGBO(0, 0, 0, 1))),
                 ),
               ),
-                Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Container(
                   height: 61.h,
@@ -87,10 +87,8 @@ class _PasswordSettingState extends State<PasswordSetting> {
                       )),
                 ),
               ),
-                     GestureDetector(
-                onTap: () {
-                 
-                },
+              GestureDetector(
+                onTap: () {},
                 child: Center(
                   child: Text('Previous',
                       style: TextStyle(
@@ -100,7 +98,7 @@ class _PasswordSettingState extends State<PasswordSetting> {
                           fontWeight: FontWeight.w600)),
                 ),
               ),
-                     GestureDetector(
+              GestureDetector(
                 onTap: () {
                   const LoginScreen().launch(context);
                 },

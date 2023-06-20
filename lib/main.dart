@@ -3,13 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
-import 'package:stylclick/modules/account.dart';
 import 'package:stylclick/modules/auth/login.dart';
-import 'package:stylclick/modules/catalogue/catalogue.dart';
-import 'package:stylclick/modules/edit_profile.dart';
-import 'package:stylclick/modules/home.dart';
-import 'package:stylclick/modules/select-tailor/select_tailor.dart';
-import 'package:stylclick/modules/vendor/become_vendor.dart';
+import 'package:stylclick/modules/order/order_summary.dart';
 import 'package:stylclick/redirect.dart';
 import 'package:stylclick/shared/app_providers.dart';
 import 'package:stylclick/shared/constants/strings.dart';
@@ -68,7 +63,7 @@ class _MyAppState extends State<MyApp> {
         navigatorKey: navigatorKey,
         scrollBehavior: SBehavior(),
         title: appName,
-        home: HomePage(),
+        home: LoginScreen(),
         // home: moveToHome
         //     ? Redirect()
         //     : moveToOnboarding

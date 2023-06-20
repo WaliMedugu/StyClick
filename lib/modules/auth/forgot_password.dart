@@ -67,7 +67,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
               ),
               24.height,
-              GestureDetector(
+              InkWell(
                    onTap: () {
                   const LoginScreen().launch(context);
                 },

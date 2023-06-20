@@ -53,8 +53,8 @@ class _VerifyUserState extends State<VerifyUser> {
                 length: 4,
                 fieldBorderStyle: FieldBorderStyle.square,
                 responsive: false,
-                fieldHeight: 56.0,
-                fieldWidth: 56.0,
+                fieldHeight: 48.0,
+                fieldWidth: 48.0,
                 borderWidth: 0.5,
                 activeBorderColor: biometricButtonColor,
                 activeBackgroundColor: biometricButtonColor,
@@ -70,7 +70,7 @@ class _VerifyUserState extends State<VerifyUser> {
                 controller: otpController,
                 onComplete: (output) {
                   // Your logic with pin code
-                  print(output);
+                  log(output);
                 },
               ),
               Padding(

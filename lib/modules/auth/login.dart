@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:stylclick/modules/auth/forgot_password.dart';
 import 'package:stylclick/modules/auth/register.dart';
-import 'package:stylclick/modules/auth/reset_password.dart';
 import 'package:stylclick/modules/home.dart';
 import 'package:stylclick/shared/constants/colors.dart';
 import 'package:stylclick/shared/constants/images.dart';
@@ -33,6 +32,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Gradient gradient = const LinearGradient(
     colors: [primary, primaryGradient],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  Gradient textGradient = const LinearGradient(
+    colors: [
+      Color(0xFFEF4051),
+      Color(0xFFF1562E),
+    ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
@@ -67,15 +75,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold)),
                   8.width,
                   ShaderMask(
-                    shaderCallback: (size) => gradient.createShader(
-                      Rect.fromLTWH(0, 0, size.width, size.height + 24),
-                    ),
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (bounds) {
+                      return gradient.createShader(bounds);
+                    },
                     child: Text('back',
                         style: TextStyle(
                             fontFamily: cinta,
                             fontSize: 35.sp,
                             color: white,
-                            fontWeight: FontWeight.w900)),
+                            fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),
@@ -89,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: 'Enter email',
                 ),
               ),
-              32.height,
+              24.height,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: CustomTextField(
@@ -103,7 +112,22 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Color.fromRGBO(0, 0, 0, 1))),
                 ),
               ),
-              48.height,
+              8.height,
+              Padding(
+                padding: const EdgeInsets.only(left:20.0),
+                child: InkWell(
+                  onTap: (){
+                    ForgotPassword().launch(context);
+                  },
+                  child: Text('Forget Password ?',
+                      style: TextStyle(
+                          fontFamily: cinta,
+                          fontSize: 14.sp,
+                          color: Color(0xff0765DF),
+                          fontWeight: FontWeight.w500)),
+                ),
+              ),
+              36.height,
               InkWell(
                 onTap: () {
                   HomePage().launch(context);
@@ -138,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     flex: 1,
                     child: Container(
                       decoration: BoxDecoration(color: lineColor),
-                      height: 1.2.h,
+                      height: 1.h,
                       // width: 160.w,
                     ),
                   ),
@@ -154,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     flex: 1,
                     child: Container(
                       decoration: BoxDecoration(color: lineColor),
-                      height: 1.2.h,
+                      height: 1.h,
                       // width: 160.w,
                     ),
                   ),
@@ -164,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Container(
-                  height: 61.h,
+                  height: 48.h,
                   decoration: BoxDecoration(
                     color: biometricButtonColor,
                     borderRadius: BorderRadius.circular(9),
@@ -183,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontFamily: cinta,
                               fontSize: 16.sp,
                               color: biometricTextColor,
-                              fontWeight: FontWeight.w600)),
+                              fontWeight: FontWeight.w700)),
                     ],
                   ),
                 ),
@@ -191,15 +215,15 @@ class _LoginScreenState extends State<LoginScreen> {
               24.height,
               GestureDetector(
                 onTap: () {
-                  const ForgotPassword().launch(context);
+                  const RegisterScreen().launch(context);
                 },
                 child: Center(
                   child: Text('Don’t have an account ? Sign Up',
                       style: TextStyle(
                           fontFamily: cinta,
-                          fontSize: 16.sp,
-                          color: signupTextColor,
-                          fontWeight: FontWeight.w500)),
+                          fontSize: 14.sp,
+                          color: Color(0xff271AF1),
+                          fontWeight: FontWeight.w700)),
                 ),
               ),
             ],

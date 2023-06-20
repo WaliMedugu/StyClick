@@ -1,7 +1,12 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:stylclick/modules/auth/login.dart';
+import 'package:stylclick/modules/auth/verify_user.dart';
+import 'package:stylclick/shared/constants/colors.dart';
 import 'package:stylclick/shared/constants/images.dart';
+import 'package:stylclick/shared/utils/helpers.dart';
 import 'package:stylclick/shared/widgets/custom_textfield.dart';
 import 'package:stylclick/shared/constants/strings.dart';
 
@@ -15,7 +20,10 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   int _currentStep = 0;
   final List<String> titles = ['bye', 'hello', 'hi'];
+  String? selectedState;
+  List<String> states = ['State 1', 'State 2', 'State 3'];
   int _curStep = 1;
+  String countryCode = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              24.height,
+              16.height,
               Center(
                 child: Image.asset(
                   loginLogo,
@@ -34,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   width: 184.42.w,
                 ),
               ),
-              24.height,
+              16.height,
               Center(
                 child: Text('Registration',
                     style: TextStyle(
@@ -123,11 +131,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               //   ),
               // ),
               // ),
-              StepProgressView(
-                  width: MediaQuery.of(context).size.width,
-                  curStep: _curStep,
-                  color: Color(0xff50AC02),
-                  titles: titles),
+              // StepProgressView(
+              //     width: MediaQuery.of(context).size.width,
+              //     curStep: _curStep,
+              //     color: Color(0xff50AC02),
+              //     titles: titles),
+              16.height,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: CustomTextField(
@@ -137,6 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   hintText: 'Enter full name',
                 ),
               ),
+              8.height,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: CustomTextField(
@@ -148,22 +158,144 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: CustomTextField(
-                  label: '',
-                  labelColor: black,
-                  hintTextColor: const Color.fromRGBO(0, 0, 0, 0.5),
-                  hintText: 'Mobile number',
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.r),
+                            color: textfieldFilledColor,
+                          ),
+                          child: CountryCodePicker(
+                            // backgroundColor: Color.fromRGBO(0, 0, 0, 0.5),
+                            onInit: (_countryCode) {
+                              countryCode = _countryCode.toString();
+                            },
+                            flagWidth: logicalWidth() / 18,
+                            initialSelection: 'NG',
+                            favorite: const ['+234', 'NG'],
+                            onChanged: (_countryCode) {
+                              countryCode = _countryCode.toString();
+                              log("New Country selected: " +
+                                  countryCode.toString());
+                            },
+                            // optional. Shows only country name and flag
+                            showCountryOnly: false,
+                            // optional. Shows only country name and flag when popup is closed.
+                            showOnlyCountryWhenClosed: false,
+                            // optional. aligns the flag and the Text left
+                            alignLeft: false,
+                          ),
+                        ),
+                      ),
+                    ),
+                    8.width,
+                    Flexible(
+                      flex: 2,
+                      child: CustomTextField(
+                        label: '',
+                        labelColor: black,
+                        hintTextColor: const Color.fromRGBO(0, 0, 0, 0.5),
+                        hintText: 'Mobile number',
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              8.height,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Row(
+                  children: [
+                    Flexible(
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'State',
+                            style: TextStyle(
+                                fontSize: 14.sp,
+                                color: black,
+                                fontFamily: cinta,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          8.height,
+                          Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xffdedede),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 8.0, right: 8),
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  value: selectedState,
+                                  items: states.map((state) {
+                                    return DropdownMenuItem<String>(
+                                      value: state,
+                                      child: Text(state),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedState = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    8.width,
+                    Flexible(
+                      flex: 2,
+                      child: CustomTextField(
+                        label: 'Address',
+                        labelColor: black,
+                        hintTextColor: const Color.fromRGBO(0, 0, 0, 0.5),
+                        hintText: 'Enter address',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              8.height,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: CustomTextField(
-                  label: 'Address',
+                  label: 'Password',
                   labelColor: black,
                   hintTextColor: const Color.fromRGBO(0, 0, 0, 0.5),
-                  hintText: 'Enter address',
+                  hintText: 'Enter password',
+                  suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.visibility_off,
+                          color: Color.fromRGBO(0, 0, 0, 1))),
                 ),
               ),
+              8.height,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: CustomTextField(
+                  label: 'Confirm password',
+                  labelColor: black,
+                  hintTextColor: const Color.fromRGBO(0, 0, 0, 0.5),
+                  hintText: 'Enter password',
+                  suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.visibility_off,
+                          color: Color.fromRGBO(0, 0, 0, 1))),
+                ),
+              ),
+              8.height,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: CustomTextField(
@@ -173,12 +305,59 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   hintText: 'Enter Referral Code',
                 ),
               ),
-              Text('If someone referred you enter their code here',
-                  style: TextStyle(
-                      fontFamily: cinta,
-                      fontSize: 17.sp,
-                      color: black,
-                      fontWeight: FontWeight.w300)),
+              8.height,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Text('If someone referred you enter their code here',
+                    style: TextStyle(
+                        fontFamily: cinta,
+                        fontSize: 14.sp,
+                        fontStyle: FontStyle.italic,
+                        color: const Color.fromRGBO(0, 0, 0, 0.5),
+                        fontWeight: FontWeight.w300)),
+              ),
+              16.height,
+              InkWell(
+                onTap: () {
+                  VerifyUser().launch(context);
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Container(
+                    height: 48.h,
+                    decoration: BoxDecoration(
+                        // color: white,
+                        borderRadius: BorderRadius.circular(9),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [primary, primaryGradient],
+                        )),
+                    child: Center(
+                        child: Text('Sign up',
+                            style: TextStyle(
+                                fontFamily: cinta,
+                                fontSize: 16.sp,
+                                color: white,
+                                fontWeight: FontWeight.bold))),
+                  ),
+                ),
+              ),
+              16.height,
+              InkWell(
+                onTap: () {
+                  const LoginScreen().launch(context);
+                },
+                child: Center(
+                  child: Text('Already have an account ? Sign In',
+                      style: TextStyle(
+                          fontFamily: cinta,
+                          fontSize: 16.sp,
+                          color: signupTextColor,
+                          fontWeight: FontWeight.w500)),
+                ),
+              ),
+              16.height
             ],
           ),
         ),

@@ -211,10 +211,7 @@ class TailorDetails extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     8.height,
-
-
                     Wrap(
-
                       spacing: 8,
                       runSpacing: 8,
                       children: [
@@ -408,7 +405,8 @@ class TailorDetails extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),Spacer(),
+                          ),
+                          Spacer(),
                           Align(
                             alignment: Alignment.bottomRight,
                             child: Padding(

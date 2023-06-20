@@ -35,6 +35,7 @@ class CustomTextField extends StatelessWidget {
   Color? focusedBorderColor;
   Color? enabledBorderColor;
   int? maxLines;
+  FontWeight? fontWeight;
   // ignore: use_key_in_widget_constructors
   CustomTextField(
       {this.borderColor,
@@ -64,6 +65,7 @@ class CustomTextField extends StatelessWidget {
       this.hintTextColor,
       this.filledColor,
       this.maxLines,
+        this.fontWeight,
       this.labelColor});
 
   @override
@@ -77,7 +79,7 @@ class CustomTextField extends StatelessWidget {
               fontSize: 14.sp,
               color: labelColor,
               fontFamily: cinta,
-              fontWeight: FontWeight.w500),
+              fontWeight: fontWeight ?? FontWeight.w500),
         ),
         8.height,
         TextFormField(
