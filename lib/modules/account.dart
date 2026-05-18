@@ -223,7 +223,6 @@ class _AccountPageState extends State<AccountPage> {
             Text(
               title,
               style: GoogleFonts.montserrat(
-                fontFamily: cinta,
                 fontSize: 14.sp,
                 color: ink,
                 fontWeight: FontWeight.bold,
