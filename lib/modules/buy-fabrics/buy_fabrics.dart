@@ -79,7 +79,7 @@ class _BuyFabricsState extends State<BuyFabrics> {
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 16,
-                            childAspectRatio: 9 / 14
+                            childAspectRatio: 9 / 16,
                     ),
                     itemCount: images.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -110,7 +110,7 @@ class _BuyFabricsState extends State<BuyFabrics> {
                                   images[index],
                                   fit: BoxFit.cover,
                                   width: double.infinity,
-                                  height: 160.h,
+                                  height: 130.h,
                                 ),
                               ),
                               12.height,
