@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:stylclick/modules/buy-fabrics/buy_fabrics_details.dart';
 import 'package:stylclick/modules/select-tailor/tailor_details.dart';
@@ -26,32 +27,31 @@ class _BuyFabricsState extends State<BuyFabrics> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: 17.0.w,
-              ),
+            // Header
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(gradient: brandGradient),
+              padding: EdgeInsets.only(left: 17.w, right: 17.w, top: 16.h, bottom: 24.h),
               child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        backIcon,
-                        color:  selectTailorColor,
-                        width: 24.w,
-                      ),
+                    child: Image.asset(
+                      backIcon,
+                      color: Colors.white,
+                      width: 24.w,
                     ),
                   ),
+                  20.width,
                   Text(
                     'Buy Fabrics',
-                    style: TextStyle(
-                      color:  selectTailorColor,
-                      fontSize: 20.sp,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 26.sp,
+                      color: Colors.white,
                       fontWeight: FontWeight.w900,
+                      letterSpacing: -1.0,
                     ),
                   ),
                 ],
