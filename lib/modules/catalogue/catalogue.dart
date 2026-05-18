@@ -21,9 +21,11 @@ import 'package:stylclick/modules/share_earn.dart';
 import 'package:stylclick/shared/constants/strings.dart';
 import 'package:stylclick/shared/utils/helpers.dart';
 import 'package:stylclick/shared/widgets/custom_textfield.dart';
+import 'package:stylclick/modules/details.dart';
 
 class CataloguePage extends StatefulWidget {
-  const CataloguePage({Key? key}) : super(key: key);
+  final String? initialCategory;
+  const CataloguePage({Key? key, this.initialCategory}) : super(key: key);
 
   @override
   State<CataloguePage> createState() => _CataloguePageState();
@@ -39,14 +41,17 @@ class _CataloguePageState extends State<CataloguePage> {
   void _openEndDrawer() {
     _scaffoldKey.currentState?.openEndDrawer();
   }
-  Gradient gradient = const LinearGradient(
-    colors: [
-      Color(0xFFEA4262),
-      Color(0xFFDD6140),
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialCategory != null) {
+      selectedCategories = [widget.initialCategory!];
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        filterCategories(context);
+      });
+    }
+  }
 
   final List<String> images = [
     catFemaleAsoEbi,
@@ -182,8 +187,8 @@ class _CataloguePageState extends State<CataloguePage> {
                   double imageHeight = index.isEven ? 200.h : 260.h;
                   
                   return GestureDetector(
+                    onTap: () => CategoryDetails().launch(context),
                     onDoubleTap: () {
-                      print('DEBUG: Double-tapped catalogue item at index $index');
                       showMessage(context, 'Added to Favorites!');
                     },
                     child: Container(

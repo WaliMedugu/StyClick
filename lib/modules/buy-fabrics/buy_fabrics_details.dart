@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:stylclick/shared/constants/colors.dart';
 import 'package:stylclick/shared/constants/images.dart';
@@ -43,46 +44,39 @@ class _FabricSellerDetailsState extends State<FabricSellerDetails>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: cream,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
             children: [
-              SizedBox(
-                height: logicalHeight(),
-                width: logicalWidth(),
-              ),
-              Container(
-                decoration: const BoxDecoration(color: white),
-                // height: 160.h,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 17.0.w, right: 17.w),
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Image.asset(
-                          backIcon,
-                          width: 24.w,
-                          color: selectTailorColor,
+              SizedBox(height: logicalHeight(), width: logicalWidth()),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Gradient header
+                  Container(
+                    width: double.infinity,
+                    decoration: const BoxDecoration(gradient: brandGradient),
+                    padding: EdgeInsets.only(left: 17.w, right: 17.w, top: 16.h, bottom: 24.h),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () => Navigator.pop(context),
+                          child: Image.asset(backIcon, width: 24.w, color: Colors.white),
                         ),
-                      ),
-                      8.width,
-                      Text(
-                        widget.businessName ?? '',
-                        style: TextStyle(
-                          color: selectTailorColor,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w900,
+                        20.width,
+                        Text(
+                          widget.businessName,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 22.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: -0.5,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.only(left: 17.w, right: 17.w, top: 60.h),
                 child: Image.asset(bizImage),
@@ -398,6 +392,8 @@ class _FabricSellerDetailsState extends State<FabricSellerDetails>
                   ),
                 ),
               )
+                ],
+              ),
             ],
           ),
         ),

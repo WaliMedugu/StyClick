@@ -83,93 +83,88 @@ class _BuyFabricsState extends State<BuyFabrics> {
                     ),
                     itemCount: images.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
+                      return GestureDetector(
                         onTap: () {
-                          FabricSellerDetails(businessName: 'Moralake Stitches',).launch(context);
+                          FabricSellerDetails(businessName: 'Moralake Fabrics').launch(context);
                         },
                         child: Container(
-                          width: context.width() * 0.4,
-                          height: 250,
-                          decoration: const BoxDecoration(
-                            // borderRadius: BorderRadius.circular(8),
-                            color: Colors.white,
-
-                          ),
-                          child: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.start,
-                            children: [
-                              Image.asset(
-                                images[index],
-                                fit: BoxFit.cover,
-                                height: 184.h,
-                                width: 184.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.r),
+                            color: white,
+                            border: Border.all(color: sand),
+                            boxShadow: [
+                              BoxShadow(
+                                color: ink.withOpacity(0.03),
+                                blurRadius: 10,
+                                offset: const Offset(0, 4),
                               ),
-                              4.height,
+                            ],
+                          ),
+                          padding: EdgeInsets.all(8.w),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12.r),
+                                child: Image.asset(
+                                  images[index],
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  height: 160.h,
+                                ),
+                              ),
+                              12.height,
                               Text(
-                                'Swiss lace',
+                                'Swiss Lace',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  fontSize: 13.sp,
-                                  color: storeNameColor,
-                                  fontFamily: cinta,
+                                  fontFamily: 'Cinta',
+                                  fontSize: 14.sp,
+                                  color: ink,
                                   fontWeight: FontWeight.w700,
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                               4.height,
                               Row(
                                 children: [
-                                  const Icon(
-                                    (Icons.location_on),
-                                    color: locationIconColor,
-                                    size: 16,
-                                  ),
-                                  4.width,
+                                  Icon(Icons.location_on, color: locationIconColor, size: 12.sp),
+                                  2.width,
                                   Text(
-                                    'Image $index',
+                                    'Garki, Abuja',
                                     style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontFamily: cinta,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Cinta',
+                                      fontSize: 11.sp,
+                                      color: textLight,
                                     ),
-                                    textAlign: TextAlign.center,
                                   ),
                                 ],
                               ),
-                              4.height,
+                              6.height,
                               Row(
                                 children: [
-                                  RatingBar.builder(
-                                    initialRating: 3,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 12,
-                                    // itemPadding: EdgeInsets.symmetric(
-                                    //     horizontal: 2.0),
-                                    itemBuilder: (context, _) => const Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                      size: 5,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      log(rating);
-                                    },
+                                  Icon(Icons.star_rounded, color: Colors.amber, size: 12.sp),
+                                  2.width,
+                                  Text(
+                                    '4.8',
+                                    style: GoogleFonts.montserrat(fontSize: 11.sp, fontWeight: FontWeight.w700, color: ink),
                                   ),
                                   4.width,
                                   Text(
-                                    '13 Reviews',
-                                    style: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontFamily: cinta,
-                                        fontWeight: FontWeight.bold,
-                                        color: signinTextColor),
-                                    textAlign: TextAlign.center,
+                                    '(13)',
+                                    style: GoogleFonts.montserrat(fontSize: 10.sp, color: textLight),
                                   ),
                                 ],
                               ),
-                              4.height,
+                              8.height,
+                              Text(
+                                'NGN 3,500/yard',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.sp,
+                                  color: primary,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
                             ],
                           ),
                         ),

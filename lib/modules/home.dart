@@ -10,6 +10,7 @@ import 'package:stylclick/modules/order/saved_order.dart';
 import 'package:stylclick/modules/order/saved_items.dart';
 import 'package:stylclick/modules/select-tailor/select_tailor.dart';
 import 'package:stylclick/modules/vendor/index.dart';
+import 'package:stylclick/modules/catalogue/catalogue.dart';
 import 'package:stylclick/shared/widgets/nav.dart';
 import 'package:stylclick/shared/constants/colors.dart';
 import 'package:stylclick/shared/constants/images.dart';
@@ -324,7 +325,20 @@ class _HomePageState extends State<HomePage> {
                   itemCount: categoriesImages.length,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () => CategoryDetails().launch(context),
+                      onTap: () {
+                        // Navigate to catalogue with this category pre-filtered
+                        final categoryMap = {
+                          'Female\nAso-ebi': 'Lace Asoebi',
+                          'Male\nAso-ebi':   'Lace Asoebi',
+                          'Ankara':          'Ankara Styles',
+                          'Ready to\nWear':  'Casual Wears',
+                          'Materials':       'Bespoke Wears',
+                          'Senator\nStyles': 'Senator & Kaftans',
+                          'Lace\nStyles':    'Lace Asoebi',
+                        };
+                        final filter = categoryMap[categoriesText[index]] ?? categoriesText[index].replaceAll('\n', ' ');
+                        CataloguePage(initialCategory: filter).launch(context);
+                      },
                       child: Container(
                         width: 110.w,
                         margin: EdgeInsets.only(right: 8.w),
@@ -421,10 +435,8 @@ class _HomePageState extends State<HomePage> {
                     double imageHeight = index.isEven ? 180.h : 220.h;
                     
                     return GestureDetector(
-                      onDoubleTap: () {
-                        print('DEBUG: Double-tapped card at index $index');
-                        showMessage(context, 'Added to Favorites!');
-                      },
+                      onTap: () => CategoryDetails().launch(context),
+                      onDoubleTap: () => showMessage(context, 'Added to Favorites!'),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.r),
