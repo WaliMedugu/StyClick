@@ -16,6 +16,7 @@ import 'package:stylclick/modules/settings.dart';
 import 'package:stylclick/modules/share_earn.dart';
 import 'package:stylclick/shared/widgets/nav.dart';
 import 'package:stylclick/modules/auth/login.dart';
+import 'package:stylclick/shared/constants/strings.dart';
 
 class VendorPage extends StatefulWidget {
   const VendorPage({Key? key}) : super(key: key);
